@@ -1,38 +1,20 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-// Imports of Components
-import Home from './Pages/Home';
-import Notfound from './Pages/Notfound';
-import ProjectList from './Pages/ProjectList';
-import Navbar from './Organisms/Navbar';
-import Project from './Organisms/Project';
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./Templates/styles/ThemeGenerator"
+import Component from './Utils/Component'
 
 // Styles
 import './Templates/styles/App.css';
-import Footer from './Organisms/Footer';
+import { useAppContext } from "./Contexts/AppContext";
 
-const App = () => {
+const App = (props) => {
+  const { theme } = useAppContext()
   return (
-    <div className="App">
-      <Router>
-      <Navbar />
-      <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/projects">
-              <ProjectList />
-            </Route>
-            <Route exact path="/projects/:id">
-              <Project />
-            </Route>
-            <Route path="*">
-              <Notfound />
-            </Route>
-          </Switch>
-      </Router>
-      <Footer />
-    </div>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles /> <Component
+          {...props}
+        />
+      </ThemeProvider>
   );
 }
 
