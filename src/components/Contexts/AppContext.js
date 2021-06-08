@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import Loader from '../Atoms/Loader'
+import { auth, googleProvider } from "./FireBase"
 
 const AppContext = React.createContext()
 
@@ -10,15 +11,37 @@ export function useAppContext() {
 export function AppProvider({ children, ...props }) {
 
     // declare constants for globals states
-    
-  const [loading, setLoading] = useState(true)
-  const [errorMsg, setErrorMsg] = useState({})
-  const [theme, setTheme] = useState("light")
 
+    const [loading, setLoading] = useState(true)
+    const [errorMsg, setErrorMsg] = useState({})
+    const [theme, setTheme] = useState("light")
+    const [isAuth, setIsAuth] = useState(false)
+    const [userData, setUserData] = useState(null)
 
-  const toggleTheme = () => {
-     theme === 'light' ? setTheme('dark') : setTheme('light')
-  }
+    const toggleTheme = () => {
+        theme === 'light' ? setTheme('dark') : setTheme('light')
+    }
+
+    const signInWithGoogle = async () => {
+        try {
+            const res = await auth.signInWithPopup(googleProvider)
+            setUserData(res.user)
+            setIsAuth(true)
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    async function logout() {
+        try {
+            await auth.signOut().then(() => {
+                setUserData(null)
+                setIsAuth(false)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     // useEffect once to get the data then unsuscribe it
     useEffect(() => {
@@ -30,16 +53,20 @@ export function AppProvider({ children, ...props }) {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
+
     // this constant will be sended to the Provider to be used in all the components with the functions/values
     const value = {
-     loading,
-     theme,
-     setTheme,
-     setLoading,
-     errorMsg,
-     setErrorMsg,
-     toggleTheme
+        isAuth,
+        userData,
+        loading,
+        theme,
+        errorMsg,
+        setTheme,
+        setLoading,
+        setErrorMsg,
+        toggleTheme,
+        signInWithGoogle,
+        logout
     }
 
     return (

@@ -10,11 +10,11 @@ import { useAppContext } from "./Contexts/AppContext";
 const App = (props) => {
   const { theme } = useAppContext()
   return (
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <GlobalStyles /> <Component
-          {...props}
-        />
-      </ThemeProvider>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyles /> <Component
+        {...props}
+      />
+    </ThemeProvider>
   );
 }
 

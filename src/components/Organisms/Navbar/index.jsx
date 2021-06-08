@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom'
+import { useAppContext } from '../../Contexts/AppContext'
 
 const Navbar = () => {
+ const { isAuth } = useAppContext()
  return (
-  <div>
+  <div className="navbar">
    <ul>
     <li><Link to="/">Home</Link></li>
     <li><Link to="/projects">Projects List</Link></li>
+    {isAuth ? 
+    <li><Link to="/logout">Logout</Link></li>
+    :
+    <li><Link to="/login">Login</Link></li>
+    }
    </ul>
   </div>
  )

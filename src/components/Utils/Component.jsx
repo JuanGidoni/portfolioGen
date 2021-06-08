@@ -7,6 +7,8 @@ import ProjectList from '../Pages/ProjectList';
 import Navbar from '../Organisms/Navbar';
 import Project from '../Organisms/Project';
 import Footer from '../Organisms/Footer';
+import Login from '../Pages/Login';
+import Logout from '../Pages/Logout';
 
 const Component = () => {
  return (
@@ -22,6 +24,12 @@ const Component = () => {
      </Route>
      <Route exact path="/projects/:id">
       <Project />
+     </Route>
+     <Route exact path="/login">
+      <Login />
+     </Route>
+     <Route exact path="/logout">
+      <Logout />
      </Route>
      <Route path="*">
       <Notfound />
