@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import Loader from '../Atoms/Loader'
 import { auth, googleProvider } from "./FireBase"
+import { useHistory } from 'react-router-dom'
 
 const AppContext = React.createContext()
 
@@ -17,6 +18,7 @@ export function AppProvider({ children, ...props }) {
     const [theme, setTheme] = useState("light")
     const [isAuth, setIsAuth] = useState(false)
     const [userData, setUserData] = useState(null)
+    const history = useHistory()
 
     const toggleTheme = () => {
         theme === 'light' ? setTheme('dark') : setTheme('light')
@@ -25,8 +27,10 @@ export function AppProvider({ children, ...props }) {
     const signInWithGoogle = async () => {
         try {
             const res = await auth.signInWithPopup(googleProvider)
+            localStorage.setItem('user', JSON.stringify(res.user))
             setUserData(res.user)
             setIsAuth(true)
+            history.push("/")
         } catch (error) {
             console.log(error.message)
         }
@@ -45,6 +49,12 @@ export function AppProvider({ children, ...props }) {
 
     // useEffect once to get the data then unsuscribe it
     useEffect(() => {
+        if(localStorage.getItem('user')){
+            setUserData(JSON.parse(localStorage.getItem('user')))
+            setIsAuth(true)
+        }else{
+            setIsAuth(false)
+        }
         setLoading(false)
 
         return () => {
@@ -65,6 +75,8 @@ export function AppProvider({ children, ...props }) {
         setLoading,
         setErrorMsg,
         toggleTheme,
+        setUserData,
+        setIsAuth,
         signInWithGoogle,
         logout
     }

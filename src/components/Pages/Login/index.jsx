@@ -1,16 +1,13 @@
-import { useAppContext } from "../../Contexts/AppContext"
+import { useAppContext } from '../../Contexts/AppContext'
+import { Redirect } from 'react-router-dom'
 
 const Login = () => {
-
- const { isAuth, signInWithGoogle, userData } = useAppContext()
+ const { signInWithGoogle, isAuth } = useAppContext()
  return (
-
-  isAuth ? <div>
-   Bienvenido, {userData.displayName} 
-  </div> : 
-  <div>
-   You're not logged in. Please <button onClick={() => signInWithGoogle()}>Login</button>
-  </div>
+  !isAuth ? <div>
+   Please, <button onClick={() => signInWithGoogle()}>Login</button>
+  </div> :
+   <Redirect to="/panel" />
  )
 }
 
