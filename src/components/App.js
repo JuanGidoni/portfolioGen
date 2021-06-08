@@ -1,20 +1,19 @@
-
-import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "./Templates/styles/ThemeGenerator"
-import Component from './Utils/Component'
+import { AppProvider } from "./Contexts/AppContext";
+import { BrowserRouter as Router } from "react-router-dom"
+import Content from './Templates/Content'
 
 // Styles
 import './Templates/styles/App.css';
-import { useAppContext } from "./Contexts/AppContext";
 
-const App = (props) => {
-  const { theme } = useAppContext()
+const App = () => {
   return (
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <GlobalStyles /> <Component
-          {...props}
-        />
-      </ThemeProvider>
+    <div>
+        <Router style={{ minHeight: "100vh" }}>
+          <AppProvider>
+            <Content />
+          </AppProvider>
+        </Router>
+    </div>
   );
 }
 
