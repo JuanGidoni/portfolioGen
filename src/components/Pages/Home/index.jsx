@@ -1,11 +1,11 @@
 import { useAppContext } from "../../Contexts/AppContext"
 
 const Home = () => {
- const { theme, toggleTheme } = useAppContext()
+ const { config } = useAppContext()
  return (
-  <div>
-   <h1>Welcome Page</h1>
-   <button onClick={() => toggleTheme(!theme)}>Toggle Theme</button>
+  <div className="home-page">
+   <h1>{config.authorname}</h1>
+   <h2>{config.authordescription}</h2>
   </div>
  )
 }

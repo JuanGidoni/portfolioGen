@@ -7,34 +7,37 @@ import ProjectList from '../Pages/ProjectList';
 import Navbar from '../Organisms/Navbar';
 import Project from '../Organisms/Project';
 import Footer from '../Organisms/Footer';
-import Login from '../Pages/Login';
 import PrivateRoute from './PrivateRoute';
 import Panel from '../Pages/Panel';
+import Login from '../Pages/Login';
+import Blog from '../Pages/Blog';
+import Post from '../Molecules/Post';
 
 const Routes = () => {
 
- const { logout, setUserData, setIsAuth } = useAppContext()
+ const { logout, config } = useAppContext()
 
    return (
-           <div style={{ height: "100vh" }} className="d-flex flex-column align-items-center justify-content-center p-0">
+           <div className="content">
                <Navbar />
+               <div className="content-pages">
                <Switch>
                <Route exact path="/" component={Home} /> 
                <Route exact path="/login" component={Login} />
                <Route exact path="/projects" component={ProjectList} />
                <Route exact path="/projects/:id" component={Project} />
+               <Route exact path="/blog" component={Blog} />
+               <Route exact path="/blog/:id" component={Post} />
                 <PrivateRoute exact path="/panel" component={Panel} />
                 <PrivateRoute exact path="/logout" component={() => {
                    logout()
-                   setUserData(null)
-                   setIsAuth(false)
-                   localStorage.removeItem('user')
                    return <Redirect to="/" />
                  }} />
                  <Route path="*" component={Notfound} />
                </Switch>
-               <Footer />
-           </div>
+               <Footer author={config.authorname} web={config.weblink} year={config.year} />
+               </div>
+               </div>
    )
 }
 

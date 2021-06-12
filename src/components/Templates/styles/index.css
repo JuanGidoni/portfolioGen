@@ -17,3 +17,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@font-face {
+  font-family: 'Roboto Bold';
+  src: url('../../../assets/fonts/RobotoCondensed-Bold.ttf');
+ }
+ 
+ @font-face {
+  font-family: 'Roboto Italic';
+  src: url('../../../assets/fonts/RobotoCondensed-Italic.ttf');
+ }
+ 
+ @font-face {
+  font-family: 'Roboto Light';
+  src: url('../../../assets/fonts/RobotoCondensed-Light.ttf');
+ }
+ 
+ @font-face {
+  font-family: 'Roboto';
+  src: url('../../../assets/fonts/RobotoCondensed-Regular.ttf');
+ }
+ 
