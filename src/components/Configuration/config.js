@@ -9,6 +9,10 @@ export const config = {
    where: 'projects'
   },
   {
+   text: 'Blog',
+   where: 'blog'
+  },
+  {
    text: 'Contact',
    where: 'contact'
   },

@@ -9,7 +9,6 @@ const ListItem = ({ children, where, isNav, setIsToggled, isToggled, login, sign
  const loginLink = <li>
   <button to={`/${where}`} onClick={() => signInWithGoogle()}>{children}</button>
  </li>
-
  if (login)
   return loginLink
  if (isNav)

@@ -10,6 +10,8 @@ import Footer from '../Organisms/Footer';
 import PrivateRoute from './PrivateRoute';
 import Panel from '../Pages/Panel';
 import Login from '../Pages/Login';
+import Blog from '../Pages/Blog';
+import Post from '../Molecules/Post';
 
 const Routes = () => {
 
@@ -24,6 +26,8 @@ const Routes = () => {
                <Route exact path="/login" component={Login} />
                <Route exact path="/projects" component={ProjectList} />
                <Route exact path="/projects/:id" component={Project} />
+               <Route exact path="/blog" component={Blog} />
+               <Route exact path="/blog/:id" component={Post} />
                 <PrivateRoute exact path="/panel" component={Panel} />
                 <PrivateRoute exact path="/logout" component={() => {
                    logout()
