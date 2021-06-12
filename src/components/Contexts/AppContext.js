@@ -1,9 +1,11 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState, useEffect, createContext } from "react"
 import Loader from '../Atoms/Loader'
 import { auth, googleProvider } from "./FireBase"
 import { useHistory } from 'react-router-dom'
 
-const AppContext = React.createContext()
+import { config } from '../Configuration/config'
+
+const AppContext = createContext()
 
 export function useAppContext() {
     return useContext(AppContext)
@@ -20,8 +22,8 @@ export function AppProvider({ children, ...props }) {
     const [userData, setUserData] = useState(null)
     const history = useHistory()
 
-    const toggleTheme = () => {
-        theme === 'light' ? setTheme('dark') : setTheme('light')
+    const toggleTheme = (theme) => {
+        setTheme(theme)
     }
 
     const signInWithGoogle = async () => {
@@ -36,11 +38,12 @@ export function AppProvider({ children, ...props }) {
         }
     }
 
-    async function logout() {
+    const logout = async () => {
         try {
             await auth.signOut().then(() => {
                 setUserData(null)
                 setIsAuth(false)
+                localStorage.removeItem('user')
             })
         } catch (error) {
             console.log(error)
@@ -78,7 +81,8 @@ export function AppProvider({ children, ...props }) {
         setUserData,
         setIsAuth,
         signInWithGoogle,
-        logout
+        logout,
+        config
     }
 
     return (
