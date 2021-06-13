@@ -12,6 +12,8 @@ import Panel from '../Pages/Panel';
 import Login from '../Pages/Login';
 import Blog from '../Pages/Blog';
 import Post from '../Molecules/Post';
+import PanelAddPost from '../Pages/PanelAddPost';
+import PanelAddProject from '../Pages/PanelAddProject';
 
 const Routes = () => {
 
@@ -29,6 +31,8 @@ const Routes = () => {
                <Route exact path="/blog" component={Blog} />
                <Route exact path="/blog/:id" component={Post} />
                 <PrivateRoute exact path="/panel" component={Panel} />
+                <PrivateRoute exact path="/panel/project/add" component={PanelAddProject} />
+                <PrivateRoute exact path="/panel/blog/add" component={PanelAddPost} />
                 <PrivateRoute exact path="/logout" component={() => {
                    logout()
                    return <Redirect to="/" />

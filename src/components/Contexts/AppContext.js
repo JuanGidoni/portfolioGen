@@ -17,7 +17,7 @@ export function AppProvider({ children, ...props }) {
 
     const [loading, setLoading] = useState(true)
     const [errorMsg, setErrorMsg] = useState({})
-    const [theme, setTheme] = useState("light")
+    const [theme, setTheme] = useState("dark")
     const [isAuth, setIsAuth] = useState(false)
     const [userData, setUserData] = useState(null)
     const history = useHistory()
@@ -91,4 +91,3 @@ export function AppProvider({ children, ...props }) {
         </AppContext.Provider>
     )
 }
-

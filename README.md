@@ -45,3 +45,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 In this [Link](https://github.com/juangidoni) (not implemented yet)
 
 ##### This project was boostraped with `yarn create react-app portfolio` 
+
+### Version: 0.14

@@ -38,6 +38,7 @@ body {
     background-size: cover;
 
 }
+
 .btn {
     font-size: 20px;
     cursor: pointer;
@@ -46,6 +47,99 @@ body {
     padding: 10px 15px;
     border: none;
 }
+
+.btn-admin {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+    padding: 10px 15px;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto Light";
+}
+
+.btn-upload {
+    font-size: 12px;
+    cursor: pointer;
+    background: none;
+    color:  ${({ theme }) => theme.text};
+    padding: 5px 15px;
+    margin-left: 2px;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto Bold";
+}
+
+.dashboard-index a {
+    text-decoration: none;
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
+.form {
+    display:flex;
+    flex-direction: column;
+}
+
+.form input {
+    font-size: 12px;
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+    padding: 10px 15px;
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto Bold";
+}
+
+.form input:focus {
+    background-color: ${({ theme }) => theme.body};
+    color:  ${({ theme }) => theme.navbarColor};
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.form input:focus::placeholder {
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
+.form input::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
+h1::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
+h2::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
+p::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
+a::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+div::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+footer::selection{
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:  ${({ theme }) => theme.navbarColor};
+}
+
 .content {
     display:flex;
     width:100vw;
@@ -151,9 +245,11 @@ body {
     font-size: 16px;
     cursor:pointer;
 }
+
 .sidebar li button:hover {
     color: ${({ theme }) => theme.hover};
 }
+
 .sidebar .closebtn {
     position: absolute;
     top: 0;
@@ -205,22 +301,27 @@ body {
     text-align: center;
     font-size: 8px;
     font-family: "Roboto Light";
-    color: ${({theme}) => theme.text};
+    background: ${({theme}) => theme.navbarBackground};
 }
 
 .footer button:hover {
     color: ${({ theme }) => theme.hover};
 }
-
 .footer a {
     text-decoration: none;
-    color: ${({theme}) => theme.text};
+    color: ${({theme}) => theme.navbarBackground};
 }
 
 .footer a:hover {
     color: ${({ theme }) => theme.hover};
 }
-
+.dashboard-index {
+    display: flex;
+    flex-direction: column;
+}
+.mb-1 {
+    margin-bottom: 10px;
+}
 
 @media screen and (max-height: 450px) {
     .sidebar {
@@ -230,6 +331,7 @@ body {
         font-size: 18px;
     }
 }
+
 @media screen and (min-width: 560px){
 
     .content {
@@ -341,6 +443,7 @@ body {
         font-family: 'Roboto Light';
         font-size: 2em;
     }
+
     .home-page h2 {
         color: ${({theme}) => theme.headerSubTitle};
         font-family: 'Roboto Light';
@@ -353,12 +456,80 @@ body {
         text-align: center;
         font-size: 8px;
         font-family: "Roboto Light";
-        color: ${({theme}) => theme.text};
+        color: ${({theme}) => theme.navbarBackground};
+        background:none;
+    }
+
+    .cards {
+        display: flex;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        width: 100%;
     }
     
-    .footer a {
+    .cards a {
         text-decoration: none;
-        color: ${({theme}) => theme.text};
+    }
+
+    .card-item {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 6px;
+        box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+        overflow: hidden;
+        transition: transform 0.5s;
+        -webkit-transition: transform 0.5s;
+    }
+
+    .card-item:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+    }
+
+    .card-item:hover .card-image {
+        opacity: 1;
+    }
+
+    .card-info {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        padding: 1rem;
+        line-height: 1.5em;
+    }
+    
+    .card-title {
+        font-size: 25px;
+        line-height: 1.1em;
+        color: #32325d;
+        margin-bottom: 0.2em;
+    }
+    .card-intro {
+        font-size:13px;
+    }
+
+    .card-image{
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 6px 6px 0px 0px;
+        opacity: 0.91;
+    }
+
+}
+
+@media(min-width: 40rem) {
+    .cards {
+        width: 50%;
+    }
+}
+@media(min-width: 56rem) {
+    .cards {
+        width: 33.3%;
     }
 }
 
