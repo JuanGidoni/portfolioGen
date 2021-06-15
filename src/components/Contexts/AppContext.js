@@ -1,9 +1,21 @@
-import React, { useContext, useState, useEffect, createContext } from "react"
+import React, {
+    useContext,
+    useState,
+    useEffect,
+    createContext
+} from "react"
 import Loader from '../Atoms/Loader'
-import { auth, googleProvider } from "./FireBase"
-import { useHistory } from 'react-router-dom'
+import {
+    auth,
+    googleProvider
+} from "./FireBase"
+import {
+    useHistory
+} from 'react-router-dom'
 
-import { config } from '../Configuration/config'
+import {
+    config
+} from '../Configuration/config'
 
 const AppContext = createContext()
 
@@ -11,7 +23,10 @@ export function useAppContext() {
     return useContext(AppContext)
 }
 
-export function AppProvider({ children, ...props }) {
+export function AppProvider({
+    children,
+    ...props
+}) {
 
     // declare constants for globals states
 
@@ -28,11 +43,23 @@ export function AppProvider({ children, ...props }) {
 
     const signInWithGoogle = async () => {
         try {
-            const res = await auth.signInWithPopup(googleProvider)
-            localStorage.setItem('user', JSON.stringify(res.user))
-            setUserData(res.user)
-            setIsAuth(true)
-            history.push("/")
+            setLoading(true)
+            await auth.signInWithPopup(googleProvider).then(res => {
+                localStorage.setItem('user', JSON.stringify(res.user))
+                setUserData({
+                    displayName: res.user.displayName,
+                    photoURL: res.user.photoURL,
+                    email: res.user.email,
+                    uid: res.user.uid,
+                    refreshToken: res.user.refreshToken
+                })
+                setIsAuth(true)
+            })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false)
+                    history.push("/")
+                })
         } catch (error) {
             console.log(error.message)
         }
@@ -40,11 +67,17 @@ export function AppProvider({ children, ...props }) {
 
     const logout = async () => {
         try {
+            setLoading(true)
             await auth.signOut().then(() => {
-                setUserData(null)
                 setIsAuth(false)
+                setUserData(null)
                 localStorage.removeItem('user')
             })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false)
+                    history.push("/")
+                })
         } catch (error) {
             console.log(error)
         }
@@ -52,10 +85,10 @@ export function AppProvider({ children, ...props }) {
 
     // useEffect once to get the data then unsuscribe it
     useEffect(() => {
-        if(localStorage.getItem('user')){
+        if (localStorage.getItem('user')) {
             setUserData(JSON.parse(localStorage.getItem('user')))
             setIsAuth(true)
-        }else{
+        } else {
             setIsAuth(false)
         }
         setLoading(false)
@@ -87,7 +120,7 @@ export function AppProvider({ children, ...props }) {
 
     return (
         <AppContext.Provider value={value} props={props}>
-            {loading ? <Loader /> : children}
+            {loading ? <div className="loader-content"><Loader/></div> : children}
         </AppContext.Provider>
     )
 }

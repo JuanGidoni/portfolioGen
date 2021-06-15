@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Loader from "../../Atoms/Loader"
 import { useAppContext } from "../../Contexts/AppContext"
 import { getFirestore, getFirebase, storage } from "../../Contexts/FireBase"
 
@@ -11,11 +12,13 @@ const FormToAddProject = () => {
  const [image, setImage] = useState(null)
  const [imageUrl, setImageUrl] = useState('')
  const [imageStatus, setImageStatus] = useState(false)
+ const [loaderUpload, setLoaderUpload] = useState(false)
+ const [loading, setLoading] = useState(false)
 
  const uploadImage = () => {
 
   console.log('ejecutado uploadImage')
-  
+  setLoaderUpload(true)
   if (!image) {
    console.log("Please select an image")
   } else {
@@ -35,6 +38,7 @@ const FormToAddProject = () => {
        setImageUrl(url)
        setImageStatus(true)
        setImage(null)
+       setLoaderUpload(false)
       }).catch(err => console.log(err))
     })
   }
@@ -67,6 +71,7 @@ const FormToAddProject = () => {
   const db = getFirestore
   
   console.log('agregando...')
+  setLoading(true)
   let project = {
    title: title,
    description: description,
@@ -87,6 +92,7 @@ const FormToAddProject = () => {
     setCompany('')
     setRole('')
     setTechs('')
+    setLoading(false)
    }
   ).catch(err => {
    console.log(err)
@@ -98,6 +104,7 @@ const FormToAddProject = () => {
 
  return (
   userData && userData.uid === process.env.REACT_APP_adminId ?
+  loading ? <Loader /> :
    <div className="form">
     <input className="mb-1" type="text" placeholder="Project Title" onChange={(e) => setTitle(e.target.value)} />
     <input className="mb-1" type="text" placeholder="Project Description" onChange={(e) => setDescription(e.target.value)} />
@@ -106,7 +113,9 @@ const FormToAddProject = () => {
     <input className="mb-1" type="text" placeholder="Project Tecnologies" onChange={(e) => setTechs(e.target.value)} />
     <div className="upload-image mb-1">
      <input type="file" placeholder="Select image" onChange={(e) => setImage(e.target.files[0])} />
+     {loaderUpload ? <Loader /> : 
      <button className="btn-upload" onClick={() => uploadImage()}>Upload</button>
+     }
     </div>
     <button className="btn-admin" onClick={() => sendFormToFireBase()}>Add Project</button>
    </div> : "You dont have permission to be here."

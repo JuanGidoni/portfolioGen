@@ -32,30 +32,27 @@ const ProjectList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <div className="home-page">
-      {loading ? <Loader /> :
+    loading ? <Loader /> :
+    <div className="projects-page">
         <div className="cards">
           {projects && projects.length > 0 ? projects.map(
             (v, i) =>
+              <li className="cards_item">
               <Link key={i} to={`/projects/${v.id}`}>
-                <div className="card-item">
-                  <div className="card-image" style={{
-                    backgroundPosition: "center",
-                    backgroundSize: "cover", backgroundImage: `url(${v.item.image})`,
-                    width: "200px", height: "100px"
-                  }}>
+                  <div className="card">
+                    <div className="card_image"><img src={v.item.image} alt={v.item.description} /></div>
+                      <div className="card_content">
+                        <h2 className="card_title">{v.item.title}</h2>
+                        <p className="card_text">{v.item.role}</p>
+                        <button className="btn card_btn">Read More</button>
+                      </div>
                   </div>
-                  <div className="card-info">
-                    <h2 className="card-title">{v.item.title}</h2>
-                    <p className="card-intro">{v.item.role}</p>
-                  </div>
-                </div>
               </Link>
+              </li>
           ) : "Projects not found..."}
         </div>
-      }
     </div>
   )
 }
 
-export default ProjectList
+      export default ProjectList
