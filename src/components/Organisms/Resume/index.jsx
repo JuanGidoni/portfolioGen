@@ -4,8 +4,8 @@ const Title = ({ className, name, scrollTo }) => {
  return (
   <div className={className} id="author">
    <div className="author-name">
-    <h2>Welcome to my portfolio. My name is:</h2>
     <div className="name">
+    <h2>Welcome to my portfolio.</h2>
      <h1>{name}</h1>
     </div>
     <button className="btn-admin" onClick={() => scrollTo('#role')}><FaArrowDown /></button>

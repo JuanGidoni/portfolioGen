@@ -103,6 +103,10 @@ body {
     flex-direction: column;
     height: 100%;
 }
+.author-name h2 {
+    margin: 0;
+    padding: 0;
+}
 .form input::selection{
     background-color: ${({ theme }) => theme.navbarBackground};
     color:  ${({ theme }) => theme.navbarColor};
@@ -298,29 +302,24 @@ footer::selection{
 }
 
 h1 {
-    text-align: center;
     color: ${({theme}) => theme.headerTitle};
     font-family: 'Roboto Light';
     font-size: 2.5em;
 }
 h2 {
-    text-align: center;
     color: ${({theme}) => theme.headerSubTitle};
     font-family: 'Roboto Light';
     font-size: 1.5em;
 }
 h3 {
-    text-align: center;
     color: ${({theme}) => theme.headerSubTitle};
     font-family: 'Roboto Light';
 }
 h4 {
-    text-align: center;
     color: ${({theme}) => theme.headerSubTitle};
     font-family: 'Roboto Light';
 }
 h5 {
-    text-align: center;
     color: ${({theme}) => theme.headerSubTitle};
     font-family: 'Roboto Light';
 }
