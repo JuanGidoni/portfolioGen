@@ -39,3 +39,12 @@ code {
   src: url('../../../assets/fonts/RobotoCondensed-Regular.ttf');
  }
  
+ .loader-content {
+   width:100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: #141414;
+   color: white;
+ }

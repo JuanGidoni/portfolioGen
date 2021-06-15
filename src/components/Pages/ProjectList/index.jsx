@@ -1,16 +1,58 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getFirestore } from '../../Contexts/FireBase'
+import Loader from '../../Atoms/Loader';
 
 const ProjectList = () => {
- return (
-  <div>
-   This is the list of projects.
-   <div style={{display: 'flex', flexDirection: 'column'}}>
-   <Link to="/projects/1">Project 1</Link>
-   <Link to="/projects/2">Project 2</Link>
-   <Link to="/projects/3">Project 3</Link>
-   </div>
-  </div>
- )
+
+  const [projects, setProjects] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  const db = getFirestore
+
+  const getProjects = () => {
+    const categoryCollection = db.collection("projects")
+    categoryCollection.get().then(querySnapshot => {
+      if (querySnapshot.size === 0) {
+        console.log('Projects not found or empty...')
+      } else {
+        setProjects(querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          item: doc.data()
+        })))
+      }
+    }).catch((err) => {
+      console.log(err)
+    }).finally(() => {
+      setLoading(false)
+    })
+  }
+  useEffect(() => {
+    getProjects()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  return (
+    loading ? <Loader /> :
+    <div className="projects-page">
+        <div className="cards">
+          {projects && projects.length > 0 ? projects.map(
+            (v, i) =>
+              <li className="cards_item">
+              <Link key={i} to={`/projects/${v.id}`}>
+                  <div className="card">
+                    <div className="card_image"><img src={v.item.image} alt={v.item.description} /></div>
+                      <div className="card_content">
+                        <h2 className="card_title">{v.item.title}</h2>
+                        <p className="card_text">{v.item.role}</p>
+                        <button className="btn card_btn">Read More</button>
+                      </div>
+                  </div>
+              </Link>
+              </li>
+          ) : "Projects not found..."}
+        </div>
+    </div>
+  )
 }
 
-export default ProjectList
+      export default ProjectList

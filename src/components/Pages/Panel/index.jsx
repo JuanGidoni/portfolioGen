@@ -8,10 +8,10 @@ const Panel = () => {
  const { userData, isAuth } = useAppContext()
 
  return (
-  isAuth ? <div>
+  isAuth ? <div className="home-page">
    {
     userData && userData.uid === process.env.REACT_APP_adminId ?
-     <AdminPanel user={userData} /> : <UserPanel user={userData} />
+     <AdminPanel user={userData} isAdmin={true} /> : <UserPanel user={userData} />
    }
   </div> :
   <Redirect to="/"/>)
