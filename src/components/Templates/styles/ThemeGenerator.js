@@ -346,12 +346,36 @@ h5 {
 .dashboard-index {
     display: flex;
     flex-direction: column;
+    width:100%;
+    height:100%;
 }
 
 .dashboard-index a {
     text-decoration: none;
     color:  ${({ theme }) => theme.navbarColor};
 }
+
+.dashboard-buttons {
+    display:flex;
+    width: 33.33vw;
+    height: 100%;
+}
+
+.dashboard-buttons > div {
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    height:100%;
+}
+.dashboard-buttons > div > a {
+    color:  ${({ theme }) => theme.navbarColor};
+    font-size:1em;
+}
+
+.dashboard-buttons > div > a:hover {
+    color:  ${({ theme }) => theme.headerSubTitle};
+}
+
 
 .mb-1 {
     margin-bottom: 10px;
@@ -402,19 +426,21 @@ h5 {
 
 .togglerLang {
     position:fixed;
-    top:0;
-    right:1.5em;
-    padding: .5em .5em;
+    bottom:0;
+    left:0;
+    padding: .5em;
     background:none;
-    font-size: 36px;
+    width: 36px;
     display:block;
     border:none;
     cursor:pointer;
-    color: ${({ theme }) => theme.navbarColor};
+    filter: grayscale(0.55);
+    transition: 0.5s all ease-in-out;
 }
 
 .togglerLang:hover {
-    color: ${({ theme }) => theme.navbarBackground};
+    filter: grayscale(0);
+    transition: 0.5s all ease-in-out;
 }
 
 .open-menu {

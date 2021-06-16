@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { useAppContext } from '../../Contexts/AppContext'
 import PublicMenu from './PublicMenu'
 import Sidebar from './Sidebar'
-import { FaBars, FaMoon, FaSun, FaFlagUsa, FaFlag } from 'react-icons/fa'
+import { FaBars, FaMoon, FaSun } from 'react-icons/fa'
+import esIcon from '../../../assets/flags/es.svg'
+import enIcon from '../../../assets/flags/en.svg'
+import Icon from '../../Atoms/Icon'
 
 const Navbar = ({ config }) => {
   const { isAuth, signInWithGoogle, userData, theme, toggleTheme, lang, toggleLang  } = useAppContext()
@@ -27,11 +30,11 @@ const Navbar = ({ config }) => {
       {
         lang === "es" ? 
         <button className="togglerLang" onClick={() => toggleLang("en")}>
-          <FaFlagUsa />
+          <Icon image={enIcon} title="Set language to English" style={{width: "100%"}} />
         </button>
         :
         <button className="togglerLang" onClick={() => toggleLang("es")}>
-          <FaFlag />
+        <Icon image={esIcon} title="Establecer idioma a español" style={{width: "100%"}} />
         </button>
       }
       

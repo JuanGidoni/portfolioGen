@@ -26,6 +26,13 @@ const en = {
     }
    },
    blog: {
+    form: {
+     title: "Post Title",
+     description: "Post Description",
+     subject: "Post Subject",
+     message: "Post Message",
+     upload: "Upload",
+    },
      add: {
       button: "Add Post",
       text: "Complete this form to add a blog post"
@@ -116,13 +123,20 @@ const es = {
     }
    },
    blog: {
+    form: {
+     title: "Titulo del Post",
+     description: "Descripcion del Post",
+     subject: "Tema del Post",
+     message: "Mensaje del Post",
+     upload: "Subir",
+    },
      add: {
       button: "Agregar Post",
-      text: "Complete este formulario para editar un post"
+      text: "Complete este formulario para agregar un post"
      },
      delete: {
       button: 'Borrar Post',
-      text: "Complete este formulario para editar un post"
+      text: "Complete este formulario para borrar un post"
      },
      edit: {
       button: 'Editar Post',

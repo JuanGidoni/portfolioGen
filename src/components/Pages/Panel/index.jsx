@@ -1,17 +1,15 @@
 import { Redirect } from 'react-router-dom'
-import { useAppContext } from "../../Contexts/AppContext"
 import AdminPanel from "../../Organisms/AdminPanel"
 import UserPanel from "../../Organisms/UserPanel"
 
-const Panel = () => {
+const Panel = ({user, config, isAuth}) => {
 
- const { userData, isAuth } = useAppContext()
 
  return (
   isAuth ? <div className="home-page">
    {
-    userData && userData.uid === process.env.REACT_APP_adminId ?
-     <AdminPanel user={userData} isAdmin={true} /> : <UserPanel user={userData} />
+    user && user.uid === process.env.REACT_APP_adminId ?
+     <AdminPanel user={user} isAdmin={true} config={config} /> : <UserPanel user={user} />
    }
   </div> :
   <Redirect to="/"/>)

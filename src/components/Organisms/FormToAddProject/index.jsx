@@ -1,9 +1,9 @@
 import { useState } from "react"
 import Loader from "../../Atoms/Loader"
-import { useAppContext } from "../../Contexts/AppContext"
 import { getFirestore, getFirebase, storage } from "../../Contexts/FireBase"
 
-const FormToAddProject = ({ formTexts, addText }) => {
+const FormToAddProject = ({ formTexts, addText, user }) => {
+  
  const [title, setTitle] = useState('')
  const [description, setDescription] = useState('')
  const [company, setCompany] = useState('')
@@ -17,7 +17,7 @@ const FormToAddProject = ({ formTexts, addText }) => {
 
  const uploadImage = () => {
 
-  console.log('ejecutado uploadImage')
+  console.log('Execute: uploadImage')
   setLoaderUpload(true)
   if (!image) {
    console.log("Please select an image")
@@ -34,7 +34,7 @@ const FormToAddProject = ({ formTexts, addText }) => {
       .child(image.name)
       .getDownloadURL()
       .then(url => {
-       console.log('imagen subida')
+       console.log('Image uploaded...')
        setImageUrl(url)
        setImageStatus(true)
        setImage(null)
@@ -70,7 +70,7 @@ const FormToAddProject = ({ formTexts, addText }) => {
   const fb = getFirebase
   const db = getFirestore
   
-  console.log('agregando...')
+  console.log('Adding...')
   setLoading(true)
   let project = {
    title: title,
@@ -84,7 +84,7 @@ const FormToAddProject = ({ formTexts, addText }) => {
   const projectCollection = db.collection('projects')
   projectCollection.add(project).then(
    res => {
-    console.log(res, "agregado...")
+    console.log(res, "Added...")
     setImageUrl('')
     setImageStatus(false)
     setTitle('')
@@ -100,10 +100,8 @@ const FormToAddProject = ({ formTexts, addText }) => {
 
  }
 
- const { userData } = useAppContext()
-
  return (
-  userData && userData.uid === process.env.REACT_APP_adminId ?
+  user && user.uid === process.env.REACT_APP_adminId ?
   loading ? <Loader /> :
    <div className="form">
     <input className="mb-1" type="text" placeholder={formTexts.title} onChange={(e) => setTitle(e.target.value)} />
