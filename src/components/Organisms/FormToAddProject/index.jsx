@@ -3,7 +3,7 @@ import Loader from "../../Atoms/Loader"
 import { useAppContext } from "../../Contexts/AppContext"
 import { getFirestore, getFirebase, storage } from "../../Contexts/FireBase"
 
-const FormToAddProject = () => {
+const FormToAddProject = ({ formTexts, addText }) => {
  const [title, setTitle] = useState('')
  const [description, setDescription] = useState('')
  const [company, setCompany] = useState('')
@@ -106,18 +106,18 @@ const FormToAddProject = () => {
   userData && userData.uid === process.env.REACT_APP_adminId ?
   loading ? <Loader /> :
    <div className="form">
-    <input className="mb-1" type="text" placeholder="Project Title" onChange={(e) => setTitle(e.target.value)} />
-    <input className="mb-1" type="text" placeholder="Project Description" onChange={(e) => setDescription(e.target.value)} />
-    <input className="mb-1" type="text" placeholder="Project Company" onChange={(e) => setCompany(e.target.value)} />
-    <input className="mb-1" type="text" placeholder="Project Role" onChange={(e) => setRole(e.target.value)} />
-    <input className="mb-1" type="text" placeholder="Project Tecnologies" onChange={(e) => setTechs(e.target.value)} />
+    <input className="mb-1" type="text" placeholder={formTexts.title} onChange={(e) => setTitle(e.target.value)} />
+    <input className="mb-1" type="text" placeholder={formTexts.description} onChange={(e) => setDescription(e.target.value)} />
+    <input className="mb-1" type="text" placeholder={formTexts.company} onChange={(e) => setCompany(e.target.value)} />
+    <input className="mb-1" type="text" placeholder={formTexts.role} onChange={(e) => setRole(e.target.value)} />
+    <input className="mb-1" type="text" placeholder={formTexts.techs} onChange={(e) => setTechs(e.target.value)} />
     <div className="upload-image mb-1">
      <input type="file" placeholder="Select image" onChange={(e) => setImage(e.target.files[0])} />
      {loaderUpload ? <Loader /> : 
-     <button className="btn-upload" onClick={() => uploadImage()}>Upload</button>
+     <button className="btn-upload" onClick={() => uploadImage()}>{formTexts.upload}</button>
      }
     </div>
-    <button className="btn-admin" onClick={() => sendFormToFireBase()}>Add Project</button>
+    <button className="btn-admin" onClick={() => sendFormToFireBase()}>{addText}</button>
    </div> : "You dont have permission to be here."
  )
 }

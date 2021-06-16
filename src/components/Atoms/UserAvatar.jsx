@@ -1,4 +1,3 @@
-
 const UserAvatar = ({image, name}) => {
  return (
   <div className="useravatar">

@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { useAppContext } from '../../Contexts/AppContext'
 import PublicMenu from './PublicMenu'
 import Sidebar from './Sidebar'
-import { FaBars, FaMoon, FaSun } from 'react-icons/fa'
+import { FaBars, FaMoon, FaSun, FaFlagUsa, FaFlag } from 'react-icons/fa'
 
-const Navbar = () => {
-  const { isAuth, signInWithGoogle, userData, config, theme, toggleTheme } = useAppContext()
+const Navbar = ({ config }) => {
+  const { isAuth, signInWithGoogle, userData, theme, toggleTheme, lang, toggleLang  } = useAppContext()
   const [isToggled, setIsToggled] = useState(false)
   return (
     <div className="content-navbar">
@@ -22,6 +22,16 @@ const Navbar = () => {
         :
         <button className="togglerTheme" onClick={() => toggleTheme("light")}>
           <FaSun />
+        </button>
+      }
+      {
+        lang === "es" ? 
+        <button className="togglerLang" onClick={() => toggleLang("en")}>
+          <FaFlagUsa />
+        </button>
+        :
+        <button className="togglerLang" onClick={() => toggleLang("es")}>
+          <FaFlag />
         </button>
       }
       
