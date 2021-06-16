@@ -21,14 +21,14 @@ const Home = ({ config }) => {
 
  return (
   <div className="content-resume" ref={ref}>
-   <Title name={config.author.name} className="resume" scrollTo={scrollTo} />
+   <Title name={config.author.name} slogan={config.websiteSlogan} className="resume" scrollTo={scrollTo} />
    <Role role={config.author.role} className="resume" scrollTo={scrollTo} />
    <AboutMe
     age={config.author.age}
     name={config.author.name}
     biography={config.author.biography}
     className="resume" scrollTo={scrollTo} />
-   <Skills skills={config.author.skills} className="resume" scrollTo={scrollTo} />
+   <Skills skills={config.author.skills} errorHandler={config.errors.empty} className="resume" scrollTo={scrollTo} />
   </div>
  )
 }

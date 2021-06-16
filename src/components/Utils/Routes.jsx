@@ -17,13 +17,16 @@ import PanelAddProject from '../Pages/PanelAddProject';
 const Routes = () => {
 
  const { logout, config } = useAppContext()
+ 
 
    return (
            <div className="content">
-               <Navbar author={config.author} web={config.linkedin} year={config.year}/>
+           <Navbar config={config} />
                <div className="content-pages">
                <Switch>
-               <Route exact path="/" component={() => <Home config={config} />} /> 
+               <Route exact path="/" render={(props) => (
+                 <Home {...props} config={config} />
+               )} /> 
                <Route exact path="/login" component={Login} />
                <Route exact path="/projects" component={ProjectList} />
                <Route exact path="/projects/:id" component={Project} />

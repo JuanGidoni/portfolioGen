@@ -5,30 +5,30 @@ import BackgroundBlack from "../../../assets/background.jpg"
 import BackgroundWhite from "../../../assets/background-white.jpg"
 
 import {
-    config
+    themeConfig
 } from "../../Configuration/config.js"
 
 export const darkTheme = {
-    body: config.colors.dark.body,
-    text: config.colors.dark.text,
-    hover: config.colors.dark.navbarHover,
-    navbarBackground: config.colors.dark.navbarBackground,
-    navbarColor: config.colors.dark.navbarText,
+    body: themeConfig.colors.dark.body,
+    text: themeConfig.colors.dark.text,
+    hover: themeConfig.colors.dark.navbarHover,
+    navbarBackground: themeConfig.colors.dark.navbarBackground,
+    navbarColor: themeConfig.colors.dark.navbarText,
     backgroundImage: BackgroundBlack,
-    headerTitle: config.colors.dark.heading,
-    headerSubTitle: config.colors.dark.subHeading,
+    headerTitle: themeConfig.colors.dark.heading,
+    headerSubTitle: themeConfig.colors.dark.subHeading,
     shadow: "rgba(214, 228, 20, 0.1)",
 }
 
 export const lightTheme = {
-    body: config.colors.light.body,
-    text: config.colors.light.text,
-    hover: config.colors.dark.navbarHover,
-    navbarBackground: config.colors.light.navbarBackground,
-    navbarColor: config.colors.light.navbarText,
+    body: themeConfig.colors.light.body,
+    text: themeConfig.colors.light.text,
+    hover: themeConfig.colors.dark.navbarHover,
+    navbarBackground: themeConfig.colors.light.navbarBackground,
+    navbarColor: themeConfig.colors.light.navbarText,
     backgroundImage: BackgroundWhite,
-    headerTitle: config.colors.light.heading,
-    headerSubTitle: config.colors.light.heading2,
+    headerTitle: themeConfig.colors.light.heading,
+    headerSubTitle: themeConfig.colors.light.heading2,
     shadow: "rgba(0,0,0,0.1)",
 }
 
@@ -346,12 +346,36 @@ h5 {
 .dashboard-index {
     display: flex;
     flex-direction: column;
+    width:100%;
+    height:100%;
 }
 
 .dashboard-index a {
     text-decoration: none;
     color:  ${({ theme }) => theme.navbarColor};
 }
+
+.dashboard-buttons {
+    display:flex;
+    width: 33.33vw;
+    height: 100%;
+}
+
+.dashboard-buttons > div {
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    height:100%;
+}
+.dashboard-buttons > div > a {
+    color:  ${({ theme }) => theme.navbarColor};
+    font-size:1em;
+}
+
+.dashboard-buttons > div > a:hover {
+    color:  ${({ theme }) => theme.headerSubTitle};
+}
+
 
 .mb-1 {
     margin-bottom: 10px;
@@ -395,9 +419,30 @@ h5 {
     cursor:pointer;
     color: ${({ theme }) => theme.navbarColor};
 }
+
 .togglerTheme:hover {
     color: ${({ theme }) => theme.navbarBackground};
 }
+
+.togglerLang {
+    position:fixed;
+    bottom:0;
+    left:0;
+    padding: .5em;
+    background:none;
+    width: 36px;
+    display:block;
+    border:none;
+    cursor:pointer;
+    filter: grayscale(0.55);
+    transition: 0.5s all ease-in-out;
+}
+
+.togglerLang:hover {
+    filter: grayscale(0);
+    transition: 0.5s all ease-in-out;
+}
+
 .open-menu {
     position:fixed;
     top:0;

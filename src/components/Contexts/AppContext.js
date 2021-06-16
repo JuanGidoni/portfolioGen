@@ -14,7 +14,7 @@ import {
 } from 'react-router-dom'
 
 import {
-    config
+    globalConfig
 } from '../Configuration/config'
 
 const AppContext = createContext()
@@ -36,11 +36,19 @@ export function AppProvider({
     const [isAuth, setIsAuth] = useState(false)
     const [userData, setUserData] = useState(null)
     const history = useHistory()
+    const [lang, setLang] = useState("en")
 
     const toggleTheme = (theme) => {
         setTheme(theme)
     }
 
+    const toggleLang = (lang) => {
+        localStorage.setItem("lang", lang)
+        setLang(lang)
+    }
+    
+    let config = lang === "es" ? globalConfig("es") : globalConfig("en")
+    
     const signInWithGoogle = async () => {
         try {
             setLoading(true)
@@ -83,6 +91,7 @@ export function AppProvider({
         }
     }
 
+
     // useEffect once to get the data then unsuscribe it
     useEffect(() => {
         if (localStorage.getItem('user')) {
@@ -90,6 +99,12 @@ export function AppProvider({
             setIsAuth(true)
         } else {
             setIsAuth(false)
+        }
+
+        if(localStorage.getItem('lang')) {
+            setLang(localStorage.getItem('lang'))
+        }else {
+            setLang("en")
         }
         setLoading(false)
 
@@ -107,6 +122,9 @@ export function AppProvider({
         loading,
         theme,
         errorMsg,
+        lang,
+        config,
+        globalConfig,
         setTheme,
         setLoading,
         setErrorMsg,
@@ -115,7 +133,8 @@ export function AppProvider({
         setIsAuth,
         signInWithGoogle,
         logout,
-        config
+        setLang,
+        toggleLang
     }
 
     return (

@@ -36,9 +36,9 @@ const ProjectList = () => {
     <div className="projects-page">
         <div className="cards">
           {projects && projects.length > 0 ? projects.map(
-            (v, i) =>
-              <li className="cards_item">
-              <Link key={i} to={`/projects/${v.id}`}>
+            (v) =>
+              <li key={v.id} className="cards_item">
+              <Link to={`/projects/${v.id}`}>
                   <div className="card">
                     <div className="card_image"><img src={v.item.image} alt={v.item.description} /></div>
                       <div className="card_content">
