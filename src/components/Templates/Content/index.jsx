@@ -10,7 +10,7 @@ const Content = () => {
  return (
   <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
    <GlobalStyles />
-   <Routes/>
+   <Routes />
   </ThemeProvider>
  )
 }

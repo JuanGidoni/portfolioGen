@@ -43,9 +43,11 @@ body {
     scroll-behavior: smooth;
     overflow:hidden;
 }
+
 .loader-content {
   background: ${({ theme }) => theme.body};
 }
+
 .useravatar {
     width: 100%;
     display:flex;
@@ -54,12 +56,15 @@ body {
     align-items:start;
     border-right: 1px solid ${({ theme }) => theme.headerTitle};
 }
+
 .avatar {
     padding: 16px 8px 8px 32px;
 }
+
 .name {
     padding: 8px 8px 8px 32px;
 }
+
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
@@ -301,6 +306,22 @@ footer::selection{
     color: ${({theme}) => theme.navbarColor};
 }
 
+.posts-page {
+    display:flex;
+    width:100%;
+    height:auto;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto Italic";
+    color: ${({theme}) => theme.navbarColor};
+}
+.posts-grid {
+    margin: 1.5em 0;
+    padding: 1.5em;
+    background:#353535;
+}
 h1 {
     color: ${({theme}) => theme.headerTitle};
     font-family: 'Roboto Light';

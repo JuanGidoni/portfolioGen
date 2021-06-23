@@ -10,9 +10,9 @@ import PrivateRoute from './PrivateRoute';
 import Panel from '../Pages/Panel';
 import Login from '../Pages/Login';
 import Blog from '../Pages/Blog';
-import Post from '../Molecules/Post';
 import PanelAddPost from '../Pages/PanelAddPost';
 import PanelAddProject from '../Pages/PanelAddProject';
+import PostLoad from '../Organisms/PostLoad';
 
 const Routes = () => {
 
@@ -31,7 +31,7 @@ const Routes = () => {
                <Route exact path="/projects" component={ProjectList} />
                <Route exact path="/projects/:id" component={Project} />
                <Route exact path="/blog" component={Blog} />
-               <Route exact path="/blog/:id" component={Post} />
+               <Route exact path="/post/:id" component={PostLoad} />
                 <PrivateRoute exact path="/panel" component={Panel} />
                 <PrivateRoute exact path="/panel/project/add" component={PanelAddProject} />
                 <PrivateRoute exact path="/panel/blog/add" component={PanelAddPost} />
