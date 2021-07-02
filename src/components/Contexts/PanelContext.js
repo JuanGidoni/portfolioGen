@@ -7,13 +7,13 @@ import React, {
 import Loader from '../Atoms/Loader'
 import { getFirestore } from './FireBase'
 
-const BlogContext = createContext()
+const PanelContext = createContext()
 
-export function useBlogContext() {
-    return useContext(BlogContext)
+export function usePanelContext() {
+    return useContext(PanelContext)
 }
 
-export function BlogProvider({
+export function PanelProvider({
     children,
     ...props
 }) {
@@ -60,8 +60,8 @@ export function BlogProvider({
     }
 
     return (
-        <BlogContext.Provider value={value} props={props}>
+        <PanelContext.Provider value={value} props={props}>
             {loading ? <div className="loader-content"><Loader /></div> : children}
-        </BlogContext.Provider>
+        </PanelContext.Provider>
     )
 }

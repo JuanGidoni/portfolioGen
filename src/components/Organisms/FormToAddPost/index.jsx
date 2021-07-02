@@ -2,7 +2,7 @@ import { useState } from "react"
 import Loader from "../../Atoms/Loader"
 import { getFirestore, getFirebase, storage } from "../../Contexts/FireBase"
 
-const FormToAddPost = ({ formTexts, addText, user, error }) => {
+const FormToAddPost = ({ formTexts, buttonText, user, error, buttons }) => {
   
  const [title, setTitle] = useState('')
  const [description, setDescription] = useState('')
@@ -105,10 +105,10 @@ const FormToAddPost = ({ formTexts, addText, user, error }) => {
    <div className="upload-image mb-1">
      <input type="file" placeholder="Select image" onChange={(e) => setImage(e.target.files[0])} />
      {loaderUpload ? <Loader /> : 
-     <button className="btn-upload" onClick={() => uploadImage()}>{formTexts.upload}</button>
+     <button className="btn-upload" onClick={() => uploadImage()}>{buttons.upload}</button>
      }
     </div>
-    <button className="btn-admin" onClick={() => sendFormToFireBase()}>{addText}</button>
+    <button className="btn-admin" onClick={() => sendFormToFireBase()}>{buttonText}</button>
    </div> : error
  )
 }
